@@ -1,0 +1,9 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ .Title }}</title>
+{{ $main := resources.Get "css/main.css" | resources.PostCSS | resources.Minify }}
+{{ $syntax := resources.Get "css/syntax.css" | resources.Minify }}
+{{ $elasticlunr := resources.Get "js/elasticlunr.min.js" }}
+<link rel="stylesheet" href="{{ $main.Permalink }}">
+<link rel="stylesheet" href="{{ $syntax.Permalink }}">
+<link href='{{ "/feed.xml" | relURL }}' rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" />

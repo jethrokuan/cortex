@@ -1,0 +1,5 @@
+{{ range .Data.Pages }}
+<li>
+  <a href="{{ .Permalink | relURL }}">{{ .Title }}</a> - <time>{{ .Date.Format "02 Jan 2006" }}</time>
+</li>
+{{ end }}

@@ -1,0 +1,156 @@
+@tailwind base;
+ol {
+  list-style-type: decimal;
+}
+ul {
+  list-style-type: disc;
+}
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700|Lato&display=swap');
+
+/* Setup */
+html {
+  font-family: 'Gentium Book Basic', serif;
+  font-size: 15px;
+  @apply text-gray-900;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-weight: 400;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+h2 {
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 2.1rem;
+  margin-bottom: 1.4rem;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+h3 {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  margin-bottom: 1.4rem;
+  line-height: 1;
+}
+
+.post-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
+  counter-reset: sidenote-counter;
+}
+@screen md {
+  .post-container {
+    width: 60%;
+  }
+}
+
+a:link {
+  text-decoration: none;
+  background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(currentColor, currentColor);
+  background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(currentColor, currentColor);
+  -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
+  background-position: 0% 93%, 100% 93%, 0% 93%;
+}
+
+a:link::selection,
+a:link::-moz-selection {
+  text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+  background: #b4d5fe;
+}
+
+.header {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 3.2rem;
+}
+
+.header:link {
+  background:none;
+  text-shadow:none;
+}
+
+.post-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+@screen md {
+  .post-title {
+    @apply text-4xl;
+  }
+}
+
+p, ol, ul {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+p {
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  padding-right: 0;
+  vertical-align: baseline;
+}
+
+/* Autocomplete */
+.search-wrapper {
+  font-family: 'Lato', sans-serif;
+  padding: 1.3em .8em 1em;
+  max-width: 590px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  width: 70%;
+}
+.search-wrapper input {
+  @apply text-lg m-1 p-3;
+  border-radius: 2px;
+  background: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  color: #757575;
+  cursor: default;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 16px;
+  height:36px;
+}
+
+.search {
+  outline: 0;
+  height: 42px;
+  width: 100%;
+}
+
+.teaser {
+  @apply text-base;
+  color: #999;
+  display: block;
+  clear: both;
+  margin: 5px 0 0 20px;
+}

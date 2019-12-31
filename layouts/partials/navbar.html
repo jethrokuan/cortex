@@ -1,0 +1,5 @@
+<ul class="flex align-center items-center justify-center mt-3 list-none">
+  {{ range .Site.Sections }}
+  <li class="mr-6"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+  {{ end }}
+</ul>
