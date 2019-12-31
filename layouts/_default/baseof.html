@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     {{- partial "head.html" . -}}
-  <body class="container mx-auto">
+  <body class="container mx-auto max-w-4xl">
     {{- partial "header.html" . -}}
-    <div class="main">
+    <div class="main mx-3">
       {{- block "main" . }}{{- end }}
     </div>
+    <section class="mb-10">
       {{- partial "footer.html" . -}}
-    </body>
+    </section>
+  </body>
 </html>
