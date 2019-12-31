@@ -22,30 +22,85 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
 
+
 h1 {
+  @apply text-4xl;
   font-weight: 400;
   margin-top: 4rem;
   margin-bottom: 1.5rem;
-  font-size: 3.2rem;
   line-height: 1;
 }
 
+
 h2 {
+  @apply text-3xl;
   font-style: italic;
   font-weight: 400;
   margin-top: 2.1rem;
   margin-bottom: 1.4rem;
-  font-size: 2.2rem;
   line-height: 1;
 }
 
 h3 {
+  @apply text-2xl;
   font-style: italic;
   font-weight: 400;
-  font-size: 1.7rem;
   margin-top: 2rem;
   margin-bottom: 1.4rem;
   line-height: 1;
+}
+
+@screen md {
+  h1 { @apply text-5xl; }
+  h2 { @apply text-4xl; }
+  h3 { @apply text-3xl; }
+}
+
+
+dl:after {content:"";display:table;clear:both;}
+dd {
+  padding:.5em 0;
+}
+dl {
+  width:100%;
+}
+dt, dd {
+  display:inline-block;
+  width: 30%;
+  @apply text-xl;
+}
+dt {
+  text-align:right;
+  font-weight:bold;
+  clear:left;
+  float:left;
+}
+dd {
+  width:70%;
+  padding-left:1em;
+  clear:right;
+}
+dd + dd {
+  float:right;
+  clear:both;
+}
+dt:first-child {
+  padding-top:.5em;
+}
+dd + dt {
+  clear:both;
+  padding-top:.5em;
+}
+dt + dt {
+  width: 100%;
+  float: none;
+  padding: 0 70% 0 0;
+}
+dt + dt + dd {
+  margin-top: -2em;
+}
+dt + dt + dd + dt {
+  margin-top: 2em;
 }
 
 .post-container {
@@ -82,7 +137,6 @@ a:link::-moz-selection {
 .header {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  font-size: 3.2rem;
 }
 
 .header:link {
@@ -91,23 +145,27 @@ a:link::-moz-selection {
 }
 
 .post-title {
+  @apply text-4xl;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   margin-top: 4rem;
   margin-bottom: 1.5rem;
-  font-size: 3.2rem;
   line-height: 1;
 }
 
 @screen md {
   .post-title {
-    @apply text-4xl;
+    @apply text-5xl;
   }
 }
 
 p, ol, ul {
-  font-size: 1.4rem;
+  @apply text-xl;
   line-height: 2rem;
+}
+
+ol, ul {
+  @apply ml-5;
 }
 
 p {
@@ -131,26 +189,32 @@ p {
 .search-wrapper input {
   @apply text-lg m-1 p-3;
   border-radius: 2px;
-  background: #f2f2f2;
   border: 1px solid #f2f2f2;
   color: #757575;
   cursor: default;
   font-weight: bold;
   width: 100%;
   padding: 0 16px;
-  height:36px;
-}
-
-.search {
-  outline: 0;
-  height: 42px;
-  width: 100%;
+  height: 48px;
 }
 
 .teaser {
-  @apply text-base;
+  display: none;
   color: #999;
-  display: block;
   clear: both;
   margin: 5px 0 0 20px;
+}
+
+@screen md {
+  .teaser {
+    display: block;
+  }
+
+  #searchresults li {
+    @apply text-xl;
+  }
+}
+
+#searchresults li {
+  @apply text-base;
 }
