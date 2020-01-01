@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ .Title }}</title>
-{{ $main := resources.Get "css/main.css" | resources.PostCSS | resources.Minify }}
-{{ $syntax := resources.Get "css/syntax.css" | resources.Minify }}
+{{ $main := resources.Get "css/main.css" | resources.PostCSS }}
+{{ $syntax := resources.Get "css/syntax.css" | resources.PostCSS }}
 {{ $elasticlunr := resources.Get "js/elasticlunr.min.js" }}
 <link rel="stylesheet" href="{{ $main.Permalink }}">
 <link rel="stylesheet" href="{{ $syntax.Permalink }}">
