@@ -15,7 +15,7 @@ ul {
 html {
   font-family: 'Gentium Book Basic', serif;
   font-size: 16px;
-  @apply text-gray-900;
+  @apply text-gray-900 bg-pink-100;
 }
 
 /* Typography */
