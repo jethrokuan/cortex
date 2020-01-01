@@ -1,12 +1,8 @@
-@tailwind base;
-ol {
-  list-style-type: decimal;
-}
-ul {
-  list-style-type: disc;
-}
-@tailwind components;
-@tailwind utilities;
+/* purgecss start ignore */
+@tailwind  base;
+@tailwind  components;
+/* purgecss end ignore */
+
 
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700&display=swap');
@@ -114,6 +110,13 @@ p {
 
 ol, ul {
   @apply ml-5;
+}
+
+ol {
+  list-style-type: decimal;
+}
+ul {
+  list-style-type: disc;
 }
 
 p {
