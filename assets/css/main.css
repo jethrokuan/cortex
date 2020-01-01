@@ -177,3 +177,7 @@ p {
 .search_results li a {
   background: none;
 }
+
+a:target {
+    @apply bg-orange-200;
+}
