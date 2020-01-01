@@ -1,5 +1,9 @@
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
 
 /* Fonts */
 @import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,700&display=swap');
