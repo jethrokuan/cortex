@@ -1,5 +1,5 @@
 <ul class="flex align-center items-center justify-center mt-3 list-none flex-wrap">
   {{ range .Site.Sections }}
-  <li class="text-lg md:text-xl mr-6"><a class="plain-link" href="{{ .Permalink }}">{{ .Title }}</a></li>
+  <li class="uppercase text-lg md:text-xl mr-6"><a class="plain-link" href="{{ .Permalink }}">{{ .Title }}</a></li>
   {{ end }}
 </ul>

@@ -1,8 +1,12 @@
 {{ define "main" }}
-<section id="title">
-  <h1 class="text-4xl md:text-5xl font-bold mb-12">{{ .Title }}</h1>
-</section>
-<section class="dropcase" id="content">
-  {{ .Content }}
-</section>
+<main>
+  <section id="title">
+    <h1 class="text-4xl md:text-5xl font-bold mb-12">{{ .Title }}</h1>
+  </section>
+  <section class="dropcase" id="content">
+    {{ .Content }}
+  </section>
+</main>
+<div class="text-left fixed" id="contents-list"></div>
+{{ partial "scripts.html" . }}
 {{ end }}
