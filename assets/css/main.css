@@ -18,16 +18,16 @@ html {
 /* Typography */
 
 h1 {
-    @apply text-3xl mt-16 mb-6 leading-none;
+  @apply text-3xl mt-20 mb-4 leading-none;
 }
 
 
 h2 {
-    @apply text-2xl italic mt-12 mb-4 leading-none;
+  @apply text-2xl italic mt-16 mb-3 leading-none;
 }
 
 h3 {
-    @apply text-xl italic mt-8 mb-2 leading-none;
+  @apply text-xl italic mt-12 mb-2 leading-none;
 }
 
 @screen md {
@@ -101,8 +101,19 @@ a:link::-moz-selection {
     background: #b4d5fe;
 }
 
+figcaption {
+  @apply italic;
+}
+
+pre {
+  @apply mx-4 my-5 p-2 border border-gray-400 border-dotted;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
 p, ol, ul {
-  @apply text-base leading-loose align-baseline;
+  @apply text-base leading-relaxed align-baseline;
 }
 
 p {
@@ -129,14 +140,6 @@ p {
 
 .plain-link:link {
     background:none;
-}
-
-/* Dropcase */
-.dropcase > p:first-of-type::first-letter {
-  @apply text-5xl text-red-800;
-  float: left;
-  margin: 0.05em 0.15em -0.1em 0;
-  /* initial-letter: 2; Maybe someday*/
 }
 
 .search_results {
