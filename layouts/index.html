@@ -1,9 +1,7 @@
 {{define "main"}}
 <main>
-  <div class="container mx-auto max-w-4xl">
-    {{ partial "navbar.html" . }}
-    {{ partial "searchbar.html" . }}
+  <div class="container mx-auto">
+    {{ partial "navbar.html" . }} {{ partial "searchbar.html" . }}
   </div>
 </main>
-{{partial "search.html" . }}
-{{end}}
+{{partial "search.html" . }} {{end}}

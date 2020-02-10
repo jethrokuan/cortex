@@ -6,99 +6,89 @@
 @tailwind utilities;
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,400i&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap");
 
 /* Setup */
 html {
-  font-family: 'Gentium Basic', serif;
-  font-size: 18px;
+  font-family: "Libre Baskerville", serif;
+  font-size: 16px;
   @apply text-gray-900;
 }
 
 /* Typography */
 
-h1 {
-  @apply text-3xl mt-20 mb-4 leading-none;
-}
-
-
-h2 {
-  @apply text-2xl italic mt-16 mb-3 leading-none;
-}
-
+h1,
+h2,
 h3 {
-  @apply text-xl italic mt-12 mb-2 leading-none;
+  @apply text-2xl mt-10 mb-4 leading-none;
 }
 
-@screen md {
-    h1 { @apply text-4xl; }
-    h2 { @apply text-3xl; }
-    h3 { @apply text-2xl; }
+/* Counters */
+body {
+  counter-reset: h2counter;
+}
+h1 {
+  counter-reset: h2counter;
+}
+h2:before {
+  content: counter(h2counter) ".\0000a0\0000a0";
+  counter-increment: h2counter;
+  counter-reset: h3counter;
+}
+h3:before {
+  content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+  counter-increment: h3counter;
 }
 
-
-dl:after {content:"";display:table;clear:both;}
+dl:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 dd {
-    padding:.5em 0;
+  padding: 0.5em 0;
 }
 dl {
-    width:100%;
+  width: 100%;
 }
-dt, dd {
-    display:inline-block;
-    width: 30%;
-    @apply text-base;
+dt,
+dd {
+  display: inline-block;
+  width: 30%;
+  @apply text-base;
 }
 dt {
-    text-align:right;
-    font-weight:bold;
-    clear:left;
-    float:left;
+  text-align: right;
+  font-weight: bold;
+  clear: left;
+  float: left;
 }
 dd {
-    width:70%;
-    padding-left:1em;
-    clear:right;
+  width: 70%;
+  padding-left: 1em;
+  clear: right;
 }
 dd + dd {
-    float:right;
-    clear:both;
+  float: right;
+  clear: both;
 }
 dt:first-child {
-    padding-top:.5em;
+  padding-top: 0.5em;
 }
 dd + dt {
-    clear:both;
-    padding-top:.5em;
+  clear: both;
+  padding-top: 0.5em;
 }
 dt + dt {
-    width: 100%;
-    float: none;
-    padding: 0 70% 0 0;
+  width: 100%;
+  float: none;
+  padding: 0 70% 0 0;
 }
 dt + dt + dd {
-    margin-top: -2em;
+  margin-top: -2em;
 }
 dt + dt + dd + dt {
-    margin-top: 2em;
-}
-
-a:link {
-    text-decoration: none;
-    background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(currentColor, currentColor);
-    background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(currentColor, currentColor);
-    -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-    background-repeat: no-repeat, no-repeat, repeat-x;
-    text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
-    background-position: 0% 93%, 100% 93%, 0% 93%;
-}
-
-a:link::selection,
-a:link::-moz-selection {
-    text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
-    background: #b4d5fe;
+  margin-top: 2em;
 }
 
 figcaption {
@@ -112,45 +102,47 @@ pre {
   display: block;
 }
 
-p, ol, ul {
+p,
+ol,
+ul {
   @apply text-base leading-relaxed align-baseline;
 }
 
 p {
-    @apply text-justify;
+  @apply text-justify;
 }
 
-ol, ul {
-    @apply ml-5;
+ol,
+ul {
+  @apply ml-3;
 }
 
 ol {
-    list-style-type: decimal;
+  list-style-type: decimal;
 }
 ul {
-    list-style-type: disc;
+  list-style-type: disc;
 }
 
 p {
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
-    padding-right: 0;
-    vertical-align: baseline;
-}
-
-.plain-link:link {
-    background:none;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  padding-right: 0;
+  vertical-align: baseline;
 }
 
 .search_results {
-    @apply ;
-    z-index: 99;
-    top: 100%;
-    left: 0;
-    right: 0;
+  @apply;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
+a {
+  @apply underline;
+}
 
 a:target {
-    @apply bg-orange-200;
+  @apply bg-orange-200;
 }
