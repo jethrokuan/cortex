@@ -140,9 +140,30 @@ p {
 }
 
 a {
-  @apply underline;
+  @apply bg-orange-200;
+}
+
+a[href*='//'] {
+  @apply underline bg-transparent;
 }
 
 a:target {
-  @apply bg-orange-200;
+  @apply bg-orange-400;
+}
+
+blockquote {
+  @apply bg-gray-200 p-5 border-dashed border-4 border-gray-400;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  @apply italic inline;
 }
