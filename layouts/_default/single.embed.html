@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     {{ $embed := resources.Get "css/embed.css" | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $embed.Permalink }}">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <main>
@@ -15,5 +16,8 @@
         {{ .Content }}
       </section>
     </main>
+    <script type="text/javascript">
+      window.MathJax.typeset();
+    </script>
 </body>
 </html>

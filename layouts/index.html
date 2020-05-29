@@ -1,11 +1,7 @@
 {{define "main"}}
-{{ range .Data.Pages }}
-    {{if eq .Type "index" }}
-        <div class="page" data-uuid="{{ .File.UniqueID }}" data-level="1">
-          <div class="content">
-            {{ .Content }}
-          </div>
-        </div>
-    {{end}}
-{{ end }}
+<div class="page" data-uuid="{{ .File.UniqueID }}" data-level="1">
+  <div class="content">
+    {{ .Content }}
+  </div>
+</div>
 {{end}}
