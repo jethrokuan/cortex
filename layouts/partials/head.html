@@ -1,9 +1,14 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ .Title }}</title>
-{{ $main := resources.Get "css/main.css" | resources.PostCSS }}
-{{ $syntax := resources.Get "css/syntax.css" | resources.PostCSS }}
-{{ $elasticlunr := resources.Get "js/elasticlunr.min.js" }}
-<link rel="stylesheet" href="{{ $main.Permalink }}">
-<link rel="stylesheet" href="{{ $syntax.Permalink }}">
-<link href='{{ "/feed.xml" | relURL }}' rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" />
+
+<!-- META TAGS -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<link href="https://unpkg.com/tippy.js@6.2.3/themes/light.css" rel="stylesheet">
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
+{{ $main := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $main.Permalink }}"/>

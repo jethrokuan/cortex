@@ -1,0 +1,19 @@
+<html>  
+<head>  
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta charset="UTF-8">
+    {{ $embed := resources.Get "css/embed.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $embed.Permalink }}">
+</head>
+<body>
+    <main>
+      <section id="title">
+        <h1>{{ .Title }}</h1>
+      </section>
+      <section id="content">
+        {{ .Content }}
+      </section>
+    </main>
+</body>
+</html>

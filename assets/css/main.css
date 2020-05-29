@@ -1,169 +1,293 @@
-/* purgecss start ignore */
-@tailwind base;
-@tailwind components;
-/* purgecss end ignore */
+@import url("https://rsms.me/inter/inter.css");
 
-@tailwind utilities;
-
-/* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap");
-
-/* Setup */
 html {
-  font-family: "Libre Baskerville", serif;
-  font-size: 16px;
-  @apply text-gray-900;
+  font-family: "Inter", sans-serif;
 }
 
-/* Typography */
-
-h1,
-h2,
-h3 {
-  @apply text-2xl mt-10 mb-4 leading-none;
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
 }
 
-/* Counters */
+html,
 body {
-  counter-reset: h2counter;
-}
-h1 {
-  counter-reset: h2counter;
-}
-h2:before {
-  content: counter(h2counter) ".\0000a0\0000a0";
-  counter-increment: h2counter;
-  counter-reset: h3counter;
-}
-h3:before {
-  content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
-  counter-increment: h3counter;
-}
+  padding: 0;
+  margin: 0;
+  background: #eeeeee;
 
-dl:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-dd {
-  padding: 0.5em 0;
-}
-dl {
   width: 100%;
-}
-dt,
-dd {
-  display: inline-block;
-  width: 30%;
-  @apply text-base;
-}
-dt {
-  text-align: right;
-  font-weight: bold;
-  clear: left;
-  float: left;
-}
-dd {
-  width: 70%;
-  padding-left: 1em;
-  clear: right;
-}
-dd + dd {
-  float: right;
-  clear: both;
-}
-dt:first-child {
-  padding-top: 0.5em;
-}
-dd + dt {
-  clear: both;
-  padding-top: 0.5em;
-}
-dt + dt {
-  width: 100%;
-  float: none;
-  padding: 0 70% 0 0;
-}
-dt + dt + dd {
-  margin-top: -2em;
-}
-dt + dt + dd + dt {
-  margin-top: 2em;
-}
+  height: 100%;
 
-figcaption {
-  @apply italic;
-}
-
-pre {
-  @apply mx-4 my-5 p-2 border border-gray-400 border-dotted;
-  max-width: 100%;
-  overflow-x: auto;
-  display: block;
+  font-size: 17px;
 }
 
 p,
-ol,
-ul {
-  @apply text-base leading-relaxed align-baseline;
+li {
+  line-height: 24px;
+  -webkit-letter-spacing: -0.024%;
+  -moz-letter-spacing: -0.024%;
+  -ms-letter-spacing: -0.024%;
+  letter-spacing: -0.024%;
 }
 
-p {
-  @apply text-justify;
+body {
+  display: flex;
 }
 
-ol,
-ul {
-  @apply ml-3;
+header {
+  flex: 0 0 1;
+  background: #ffffff;
+  border-style: solid;
+  border-color: #dddddd;
+  border-width: 0px;
+  border-right-width: 1px;
+
+  padding: 48px 20px;
 }
 
-ol {
-  list-style-type: decimal;
+#logo {
+  display: block;
+  /*position: absolute;*/
+  /*margin: 48px 20px;*/
 }
-ul {
-  list-style-type: disc;
-}
-
-p {
-  margin-top: 1.4rem;
-  margin-bottom: 1.4rem;
-  padding-right: 0;
-  vertical-align: baseline;
+#logo svg {
+  width: 40px;
+  height: 40px;
 }
 
-.search_results {
-  @apply;
-  z-index: 99;
-  top: 100%;
-  left: 0;
-  right: 0;
+.stat {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8px;
+}
+
+.grid-container {
+  flex: 1;
+  /*position: inherit !important;*/
+  height: 100%;
+  overflow-x: auto !important;
+  white-space: nowrap;
+  padding: 0px 15px;
+}
+.grid {
+  max-width: 100%;
+}
+
+.page {
+  white-space: normal;
+  display: inline-block;
+  width: 620px;
+  padding: 20px 15px 100px 15px;
+  max-width: 100%;
+  height: 100% !important;
+  max-height: 100%;
+  overflow-y: auto;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.page:last-child {
+  margin-right: 15px;
+}
+
+.page > .content {
+  background: #ffffff;
+  padding: 20px 50px;
+  /*position: relative;*/
+  border-radius: 10px;
+  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  margin-top: 0;
 }
 
 a {
-  @apply bg-orange-200;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  opacity: 0.5;
+  /*text-decoration: underline;*/
+}
+a.internal {
+  color: rgb(73, 197, 91);
+}
+a.external {
+  color: rgb(147, 100, 235);
+}
+a.settings {
+  color: rgb(250, 126, 54);
 }
 
-a[href*='//'] {
-  @apply underline bg-transparent;
+a.internal.linked {
+  background: rgba(55, 157, 74, 0.25);
 }
 
-a:target {
-  @apply bg-orange-400;
+a.internal.private {
+  color: #aaaaaa;
 }
 
-blockquote {
-  @apply bg-gray-200 p-5 border-dashed border-4 border-gray-400;
+code {
+  white-space: pre;
+  font-size: 13px;
+  background: #eeeeee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 100%;
+  overflow: auto;
 }
 
-blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
+pre {
+  padding: 1px 10px;
 }
 
-blockquote p {
-  @apply italic inline;
+img {
+  width: 100%;
+}
+
+/*p > span {
+    background-color: #666666;
+}
+p > span a {
+    background-color: #FF0000;
+}*/
+
+#svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+iframe {
+  overflow: hidden;
+  overflow-y: hidden;
+  border: none;
+}
+
+/*.tippy-box {
+    position: relative;
+}
+.tippy-box:before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 100%;
+    height: 100%;
+    padding: 20px 15px;
+}
+
+.tippy-box[data-placement^=right]>.tippy-arrow:before {
+    left: -15px;
+    border-width: 16px 16px 16px 0;
+    top: 13px !important;
+}
+
+[data-tippy-root] {
+    left: 10px !important;
+    top: -20px !important;
+}*/
+
+.tippy-box > .tippy-arrow:before {
+  /*left: -15px;
+    border-width: 16px 16px 16px 0;
+    top: 13px !important;*/
+  transform: scale(2);
+}
+
+.backlinks {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  /*margin: 15px;*/
+  margin-top: 20px;
+}
+
+.backlinks h3 {
+  /*color: #666666;*/
+  opacity: 0.5;
+  margin: 0;
+  padding: 15px 10px;
+}
+
+.backlinks-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.backlinks .backlink-item {
+  width: 50%;
+  max-width: calc(49%-10px);
+  display: inline-block;
+  color: #000000;
+  vertical-align: top;
+  padding: 0px 10px;
+  border-radius: 10px;
+  transition: all 0.15s ease-out;
+  box-sizing: border-box;
+}
+.backlinks .backlink-item.linked {
+  background: rgba(55, 157, 74, 0.1);
+}
+.backlinks .backlink-item:hover {
+  background: #ebebeb;
+  opacity: 1;
+}
+.backlinks .backlink-item.linked:hover {
+  background: rgba(55, 157, 74, 0.25);
+}
+.backlinks a.backlink-item > p {
+  font-size: 12px;
+  line-height: 16px;
+}
+.backlink-text {
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+  }
+
+  header {
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    padding: 10px 30px;
+  }
+
+  #logo {
+    margin: 0;
+  }
+
+  #logo svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  header > * {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .grid-container {
+    padding: 0;
+  }
+
+  .page > .content {
+    padding: 10px 20px;
+  }
+
+  .backlinks .backlink-item {
+    display: block;
+    width: 100%;
+  }
+
+  .page {
+    padding-bottom: 150px;
+  }
 }

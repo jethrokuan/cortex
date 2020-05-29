@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html>
-  {{- partial "head.html" . -}}
+  {{- partial "head.html" . -}}  
   <body class="container mx-auto max-w-4xl">
     {{- partial "header.html" . -}}
-    <div class="main mx-3">
-      {{- block "main" . }}{{- end }}
-    </div>
-    <section class="my-10">
-      {{- partial "footer.html" . -}}
-    </section>
+    {{- block "main" . }}{{- end }}
+    {{- partial "scripts.html" . -}}
   </body>
 </html>
