@@ -12,9 +12,11 @@ html {
 
 html,
 body {
+  display: flex;
+  flex-flow: column;
   padding: 0;
   margin: 0;
-  background: #eeeeee;
+  background: #fafafc;
   width: 100%;
   height: 100%;
   font-size: 17px;
@@ -32,7 +34,7 @@ li {
 header {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px #ccc solid;
   padding: 10px 20px;
 }
@@ -54,13 +56,14 @@ header {
 
 .grid-container {
   flex: 1;
-  /*position: inherit !important;*/
-  height: 100%;
+  display: flex;
   overflow-x: auto !important;
   white-space: nowrap;
+  flex-grow: 1;
 }
 .grid {
   max-width: 100%;
+  flex-grow: 1;
 }
 
 .page {
@@ -90,27 +93,11 @@ h1 {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: rgba(10, 132, 255, 1);
 }
+
 a:hover {
   opacity: 0.5;
-  /*text-decoration: underline;*/
-}
-a.internal {
-  color: rgb(73, 197, 91);
-}
-a.external {
-  color: rgb(147, 100, 235);
-}
-a.settings {
-  color: rgb(250, 126, 54);
-}
-
-a.internal.linked {
-  background: rgba(55, 157, 74, 0.25);
-}
-
-a.internal.private {
-  color: #aaaaaa;
 }
 
 code {

@@ -49,4 +49,5 @@ h3 {
 a {
   user-select: none;
   pointer-events: none;
+  color: rgba(10, 132, 255, 1);
 }
