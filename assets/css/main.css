@@ -15,10 +15,8 @@ body {
   padding: 0;
   margin: 0;
   background: #eeeeee;
-
   width: 100%;
   height: 100%;
-
   font-size: 17px;
 }
 
@@ -31,34 +29,27 @@ li {
   letter-spacing: -0.024%;
 }
 
-body {
+header {
   display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px #ccc solid;
+  padding: 10px 20px;
 }
 
-header {
-  flex: 0 0 1;
-  background: #ffffff;
-  border-style: solid;
-  border-color: #dddddd;
-  border-width: 0px;
-  border-right-width: 1px;
-
-  padding: 48px 20px;
+.site-title {
+  padding: 0;
+  margin: 0;
 }
 
 #logo {
-  display: block;
-  /*position: absolute;*/
-  /*margin: 48px 20px;*/
+  display: inline-block;
+  margin: 5px;
 }
+
 #logo svg {
   width: 40px;
   height: 40px;
-}
-
-.stat {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 8px;
 }
 
 .grid-container {
@@ -67,7 +58,6 @@ header {
   height: 100%;
   overflow-x: auto !important;
   white-space: nowrap;
-  padding: 0px 15px;
 }
 .grid {
   max-width: 100%;
@@ -75,10 +65,14 @@ header {
 
 .page {
   white-space: normal;
+  background: #ffffff;
+  padding: 20px 50px;
+  /*position: relative;*/
+  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.25);
   display: inline-block;
-  width: 620px;
-  padding: 20px 15px 100px 15px;
-  max-width: 100%;
+  width: 625px;
+  max-width: 625px;
+  /* padding: 20px 15px 100px 15px; */
   height: 100% !important;
   max-height: 100%;
   overflow-y: auto;
@@ -87,14 +81,6 @@ header {
 }
 .page:last-child {
   margin-right: 15px;
-}
-
-.page > .content {
-  background: #ffffff;
-  padding: 20px 50px;
-  /*position: relative;*/
-  border-radius: 10px;
-  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
@@ -146,13 +132,6 @@ img {
   width: 100%;
 }
 
-/*p > span {
-    background-color: #666666;
-}
-p > span a {
-    background-color: #FF0000;
-}*/
-
 #svg {
   position: absolute;
   top: 0;
@@ -169,84 +148,8 @@ iframe {
   border: none;
 }
 
-/*.tippy-box {
-    position: relative;
-}
-.tippy-box:before {
-    content: "";
-    position: absolute;
-    left: -20px;
-    top: -20px;
-    width: 100%;
-    height: 100%;
-    padding: 20px 15px;
-}
-
-.tippy-box[data-placement^=right]>.tippy-arrow:before {
-    left: -15px;
-    border-width: 16px 16px 16px 0;
-    top: 13px !important;
-}
-
-[data-tippy-root] {
-    left: 10px !important;
-    top: -20px !important;
-}*/
-
 .tippy-box > .tippy-arrow:before {
-  /*left: -15px;
-    border-width: 16px 16px 16px 0;
-    top: 13px !important;*/
   transform: scale(2);
-}
-
-.backlinks {
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 10px;
-  /*margin: 15px;*/
-  margin-top: 20px;
-}
-
-.backlinks h3 {
-  /*color: #666666;*/
-  opacity: 0.5;
-  margin: 0;
-  padding: 15px 10px;
-}
-
-.backlinks-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.backlinks .backlink-item {
-  width: 50%;
-  max-width: calc(49%-10px);
-  display: inline-block;
-  color: #000000;
-  vertical-align: top;
-  padding: 0px 10px;
-  border-radius: 10px;
-  transition: all 0.15s ease-out;
-  box-sizing: border-box;
-}
-.backlinks .backlink-item.linked {
-  background: rgba(55, 157, 74, 0.1);
-}
-.backlinks .backlink-item:hover {
-  background: #ebebeb;
-  opacity: 1;
-}
-.backlinks .backlink-item.linked:hover {
-  background: rgba(55, 157, 74, 0.25);
-}
-.backlinks a.backlink-item > p {
-  font-size: 12px;
-  line-height: 16px;
-}
-.backlink-text {
-  opacity: 0.5;
 }
 
 @media only screen and (max-width: 600px) {

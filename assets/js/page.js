@@ -2,20 +2,21 @@ function isUrlAbsolute(url) {
   return url.indexOf("://") > 0 || url.indexOf("//") === 0;
 }
 
-function preload(link) {
+function prefetch(link) {
   var subpages = ["embed.html", "page.html"];
   subpages.forEach(function (subpage) {
-    var preloadLink = document.createElement("link");
-    preloadLink.href = link.href + "embed.html";
-    preloadLink.rel = "prefetch";
-    preloadLink.as = "fetch";
-    document.head.appendChild(preloadLink);
+    var prefetchLink = document.createElement("link");
+    prefetchLink.href = link.href + "embed.html";
+    prefetchLink.rel = "prefetch";
+    prefetchLink.as = "fetch";
+    document.head.appendChild(prefetchLink);
   });
 }
 
 let pages = [window.location.pathname];
 
 let switchDirectionWindowWidth = 900;
+let animationLength = 500;
 
 function fetchNote(href, level) {
   level = Number(level) || pages.length;
@@ -34,15 +35,11 @@ function fetchNote(href, level) {
       }
 
       pages = pages.slice(0, level);
-
       fragment.innerHTML = text;
-
       let element = fragment.content.querySelector(".page");
-
       pages.push(href);
-
       container.appendChild(element);
-
+      element.animate([{ opacity: 0 }, { opacity: 1 }], animationLength);
       window.MathJax.typeset();
 
       setTimeout(
@@ -122,7 +119,7 @@ function initializePreviews(page, level) {
   links = Array.prototype.slice.call(page.querySelectorAll("a"));
 
   links.forEach(function (element) {
-    preload(element);
+    prefetch(element);
     element.dataset.level = level;
 
     if (element.hostname === window.location.hostname) {
