@@ -139,6 +139,16 @@ iframe {
   transform: scale(2);
 }
 
+footer {
+  background: #fff;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+  border-top: 1px #ccc solid;
+  font-size: 12px;
+  min-height: 33px;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     flex-direction: column;
