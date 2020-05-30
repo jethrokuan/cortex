@@ -70,12 +70,10 @@ header {
   white-space: normal;
   background: #ffffff;
   padding: 20px 50px;
-  /*position: relative;*/
   box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.25);
   display: inline-block;
   width: 625px;
-  max-width: 625px;
-  /* padding: 20px 15px 100px 15px; */
+  max-width: 90%;
   height: 100% !important;
   max-height: 100%;
   overflow-y: auto;
