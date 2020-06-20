@@ -160,10 +160,8 @@ function initializePreviews(page, level) {
       element.addEventListener("click", function (e) {
         if (!e.ctrlKey && !e.metaKey) {
           // Check if the link is an ox-hugo link. If so link to it normally
-          if (element.href.includes("/ox-hugo/")) {
-            window.open(element.href);
-          } else {
-            e.preventDefault();
+          if (!element.href.includes("/ox-hugo/")) {
+	    e.preventDefault();
             stackNote(element.href, this.dataset.level);
             fetchNote(element.href, this.dataset.level, (animate = true));
           }
