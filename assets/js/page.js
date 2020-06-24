@@ -19,47 +19,43 @@ function prefetch(link) {
 
 function stackNote(href, level) {
   level = Number(level) || pages.length;
-  href = URI(href)
-  uri = URI(window.location)
-  stacks = []
+  href = URI(href);
+  uri = URI(window.location);
+  stacks = [];
   if (uri.hasQuery("stackedNotes")) {
-    stacks = uri.query(true).stackedNotes
+    stacks = uri.query(true).stackedNotes;
     if (!Array.isArray(stacks)) {
-      stacks = [stacks]
+      stacks = [stacks];
     }
-    stacks = stacks.slice(0, level-1)
+    stacks = stacks.slice(0, level - 1);
   }
-  stacks.push(href.path())
-  uri.setQuery("stackedNotes", stacks)
+  stacks.push(href.path());
+  uri.setQuery("stackedNotes", stacks);
 
-  old_stacks = stacks.slice(0, level-1)
-  state = {"stacks": old_stacks, "level": level}
-  console.log(state)
-  window.history.pushState(
-    state,
-    "",
-    uri.href()
-  );
+  old_stacks = stacks.slice(0, level - 1);
+  state = { stacks: old_stacks, level: level };
+  console.log(state);
+  window.history.pushState(state, "", uri.href());
 }
 
 function unstackNotes(level) {
-    let container = document.querySelector("div.grid");
-    let children = Array.prototype.slice.call(container.children);
+  let container = document.querySelector("div.grid");
+  let children = Array.prototype.slice.call(container.children);
 
-    for (let i = level; i < pages.length; i++) {
-      container.removeChild(children[i]);
-      destroyPreviews(children[i]);
-    }
-    pages = pages.slice(0, level);
+  for (let i = level; i < pages.length; i++) {
+    container.removeChild(children[i]);
+    destroyPreviews(children[i]);
+  }
+  pages = pages.slice(0, level);
 }
 
-function fetchNote(href, level, animate=false) {
+function fetchNote(href, level, animate = false) {
   level = Number(level) || pages.length;
 
   const request = new Request(href + "/page.html");
   fetch(request).then(function (response) {
     response.text().then(function (text) {
-      unstackNotes(level)
+      unstackNotes(level);
       let container = document.querySelector("div.grid");
       let fragment = document.createElement("template");
       fragment.innerHTML = text;
@@ -161,30 +157,29 @@ function initializePreviews(page, level) {
         if (!e.ctrlKey && !e.metaKey) {
           e.preventDefault();
           stackNote(element.href, this.dataset.level);
-          fetchNote(element.href, this.dataset.level, animate=true);
+          fetchNote(element.href, this.dataset.level, (animate = true));
         }
       });
     }
   });
 }
 
-
-window.addEventListener('popstate', function(event) {
+window.addEventListener("popstate", function (event) {
   // TODO: check state and pop pages if possible, rather than reloading.
-  window.location = window.location  // this reloads the page.
+  window.location = window.location; // this reloads the page.
 });
 
 (function () {
   initializePreviews(document.querySelector(".page"));
 
-  uri = URI(window.location)
+  uri = URI(window.location);
   if (uri.hasQuery("stackedNotes")) {
-    stacks = uri.query(true).stackedNotes
+    stacks = uri.query(true).stackedNotes;
     if (!Array.isArray(stacks)) {
-      stacks = [stacks]
+      stacks = [stacks];
     }
     for (let i = 1; i <= stacks.length; i++) {
-      fetchNote(stacks[i-1], i)
+      fetchNote(stacks[i - 1], i);
     }
   }
 })();
