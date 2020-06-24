@@ -1,21 +1,6 @@
 let pages = [window.location.pathname];
 let switchDirectionWindowWidth = 900;
-let animationLength = 500;
-
-function isUrlAbsolute(url) {
-  return url.indexOf("://") > 0 || url.indexOf("//") === 0;
-}
-
-function prefetch(link) {
-  var subpages = ["embed.html", "page.html"];
-  subpages.forEach(function (subpage) {
-    var prefetchLink = document.createElement("link");
-    prefetchLink.href = link.href + "embed.html";
-    prefetchLink.rel = "prefetch";
-    prefetchLink.as = "fetch";
-    document.head.appendChild(prefetchLink);
-  });
-}
+let animationLength = 200;
 
 function stackNote(href, level) {
   level = Number(level) || pages.length;
@@ -34,7 +19,6 @@ function stackNote(href, level) {
 
   old_stacks = stacks.slice(0, level - 1);
   state = { stacks: old_stacks, level: level };
-  console.log(state);
   window.history.pushState(state, "", uri.href());
 }
 
@@ -53,8 +37,9 @@ function fetchNote(href, level, animate = false) {
   level = Number(level) || pages.length;
 
   const request = new Request(href + "/page.html");
-  fetch(request).then(function (response) {
-    response.text().then(function (text) {
+  fetch(request)
+    .then((response) => response.text())
+    .then((text) => {
       unstackNotes(level);
       let container = document.querySelector("div.grid");
       let fragment = document.createElement("template");
@@ -62,23 +47,25 @@ function fetchNote(href, level, animate = false) {
       let element = fragment.content.querySelector(".page");
       container.appendChild(element);
       pages.push(href);
-      if (animate) {
-        element.animate([{ opacity: 0 }, { opacity: 1 }], animationLength);
-      }
-      window.MathJax.typeset();
 
       setTimeout(
         function (element, level) {
           element.dataset.level = level + 1;
           initializePreviews(element, level + 1);
           element.scrollIntoView();
+          if (animate) {
+            element.animate([{ opacity: 0 }, { opacity: 1 }], animationLength);
+          }
+
+          if (window.MathJax) {
+            window.MathJax.typeset();
+          }
         }.bind(null, element, level),
         10
       );
 
       updateLinkStatuses();
     });
-  });
 }
 
 function updateLinkStatuses() {
@@ -121,7 +108,6 @@ let tippyOptions = {
 
 function createPreview(link, overrideOptions) {
   level = Number(link.dataset.level);
-  console.log(link.href);
   tip = tippy(
     link,
     Object.assign(
@@ -143,22 +129,42 @@ function initializePreviews(page, level) {
 
   links = Array.prototype.slice.call(page.querySelectorAll("a"));
 
-  links.forEach(function (element) {
-    prefetch(element);
+  links.forEach(async function (element) {
+    var rawHref = element.getAttribute("href");
     element.dataset.level = level;
 
-    if (element.hostname === window.location.hostname) {
-      createPreview(element, {
-        placement:
-          window.innerWidth > switchDirectionWindowWidth ? "right" : "top",
-      });
+    if (
+      rawHref &&
+      !(
+        rawHref.indexOf("http://") === 0 ||
+        rawHref.indexOf("https://") === 0 ||
+        rawHref.indexOf("#") === 0
+      )
+    ) {
+      var subpages = ["embed.html", "page.html"];
+      subpages.forEach(function (subpage) {
+        var prefetchLink = element.href + subpage;
+        console.log("Prefetching " + prefetchLink);
+        return fetch(prefetchLink)
+          .then((response) => response.headers.get("content-type"))
+          .then((ct) => {
+            if (ct.includes("text/html")) {
+              createPreview(element, {
+                placement:
+                  window.innerWidth > switchDirectionWindowWidth
+                    ? "right"
+                    : "top",
+              });
 
-      element.addEventListener("click", function (e) {
-        if (!e.ctrlKey && !e.metaKey) {
-          e.preventDefault();
-          stackNote(element.href, this.dataset.level);
-          fetchNote(element.href, this.dataset.level, (animate = true));
-        }
+              element.addEventListener("click", function (e) {
+                if (!e.ctrlKey && !e.metaKey) {
+                  e.preventDefault();
+                  stackNote(element.href, this.dataset.level);
+                  fetchNote(element.href, this.dataset.level, (animate = true));
+                }
+              });
+            }
+          });
       });
     }
   });
