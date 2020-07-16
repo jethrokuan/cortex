@@ -3,4 +3,16 @@
       <h1>{{ .Title }}</h1>
       {{ .Content }}
     </div>
+    <div class="bl-section">
+      <h4>Links to this note</h4>
+      <div class="backlinks">
+        {{ $re := printf "relref \"%s\"" .File.BaseFileName }}
+        {{ range .Site.AllPages }}
+        {{ if findRE $re .RawContent }}
+        {{ $link := strings.TrimRight "page.html" .RelPermalink }}
+        <a href="{{ $link }}">{{ .Title }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
 </div>

@@ -147,6 +147,28 @@ footer {
   min-height: 33px;
 }
 
+.bl-section {
+  padding: 10px;
+  margin-bottom: 50px;
+  background-color: #fee;
+}
+
+.backlinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bl-section h4 {
+  color: #aaa;
+  margin-top: 0;
+}
+
+.backlinks a {
+  flex: 100%;
+  color: rgba(10, 132, 255, 0.75);
+}
+
 @media only screen and (max-width: 600px) {
   body {
     flex-direction: column;
@@ -178,11 +200,6 @@ footer {
 
   .page > .content {
     padding: 10px 20px;
-  }
-
-  .backlinks .backlink-item {
-    display: block;
-    width: 100%;
   }
 
   .page {
