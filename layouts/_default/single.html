@@ -1,8 +1,25 @@
 {{define "main"}}
 <div class="grid-container">
-<div class="grid">
-        {{ partial "page.html" . }}
-</div>
+        <div class="grid">
+                <div class="page" data-uuid="{{ .File.UniqueID }}" data-level="1">
+                        <div class="content">
+                                <h1>{{ .Title }}</h1>
+                                {{ .Content }}
+                        </div>
+                        <div class="bl-section">
+                                <h4>Links to this note</h4>
+                                <div class="backlinks">
+                                        {{ $re := printf "relref \"%s\"" .File.BaseFileName }}
+                                        {{ range .Site.AllPages }}
+                                        {{ if findRE $re .RawContent }}
+                                        {{ $link := strings.TrimRight "page.html" .RelPermalink }}
+                                        <a href="{{ $link }}">{{ .Title }}</a>
+                                        {{ end }}
+                                        {{ end }}
+                                </div>
+                        </div>
+                </div>
+        </div>
 </div>
 {{ $urijs := resources.Get "js/URI.js" }}
 <script src="{{$urijs.Permalink}}" type="text/javascript"></script>

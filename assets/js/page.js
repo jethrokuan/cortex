@@ -23,7 +23,7 @@ function stackNote(href, level) {
 }
 
 function unstackNotes(level) {
-  let container = document.querySelector("div.grid");
+  let container = document.querySelector(".grid");
   let children = Array.prototype.slice.call(container.children);
 
   for (let i = level; i < pages.length; i++) {
@@ -36,12 +36,12 @@ function unstackNotes(level) {
 function fetchNote(href, level, animate = false) {
   level = Number(level) || pages.length;
 
-  const request = new Request(href + "/page.html");
+  const request = new Request(href);
   fetch(request)
     .then((response) => response.text())
     .then((text) => {
       unstackNotes(level);
-      let container = document.querySelector("div.grid");
+      let container = document.querySelector(".grid");
       let fragment = document.createElement("template");
       fragment.innerHTML = text;
       let element = fragment.content.querySelector(".page");
@@ -98,26 +98,26 @@ let tippyOptions = {
   theme: "light",
   interactive: true,
   interactiveBorder: 10,
-  delay: 100,
-  //touch: 'hold',
-  touch: "none",
+  delay: 500,
+  touch: ["hold", 500],
   maxWidth: "none",
   inlinePositioning: false,
   placement: "right",
 };
 
-function createPreview(link, overrideOptions) {
+function createPreview(link, html, overrideOptions) {
   level = Number(link.dataset.level);
+  iframe = document.createElement("iframe");
+  iframe.width = "400px";
+  iframe.height = "300px";
+  iframe.srcdoc = html;
   tip = tippy(
     link,
     Object.assign(
       {},
       tippyOptions,
       {
-        content:
-          '<iframe width="400px" height="300px" src="' +
-          link.href +
-          '/embed.html"></iframe>',
+        content: iframe.outerHTML,
       },
       overrideOptions
     )
@@ -138,34 +138,39 @@ function initializePreviews(page, level) {
       !(
         rawHref.indexOf("http://") === 0 ||
         rawHref.indexOf("https://") === 0 ||
-        rawHref.indexOf("#") === 0
+        rawHref.indexOf("#") === 0 ||
+        rawHref.includes(".pdf") ||
+        rawHref.includes(".svg")
       )
     ) {
-      var subpages = ["embed.html", "page.html"];
-      subpages.forEach(function (subpage) {
-        var prefetchLink = element.href + subpage;
-        console.log("Prefetching " + prefetchLink);
-        return fetch(prefetchLink)
-          .then((response) => response.headers.get("content-type"))
-          .then((ct) => {
-            if (ct.includes("text/html")) {
-              createPreview(element, {
-                placement:
-                  window.innerWidth > switchDirectionWindowWidth
-                    ? "right"
-                    : "top",
-              });
+      var prefetchLink = element.href;
+      async function myFetch() {
+        let response = await fetch(prefetchLink);
+        let fragment = document.createElement("template");
+        fragment.innerHTML = await response.text();
+        let ct = await response.headers.get("content-type");
+        if (ct.includes("text/html")) {
+          createPreview(
+            element,
+            fragment.content.querySelector(".page").outerHTML,
+            {
+              placement:
+                window.innerWidth > switchDirectionWindowWidth
+                  ? "right"
+                  : "top",
+            }
+          );
 
-              element.addEventListener("click", function (e) {
-                if (!e.ctrlKey && !e.metaKey) {
-                  e.preventDefault();
-                  stackNote(element.href, this.dataset.level);
-                  fetchNote(element.href, this.dataset.level, (animate = true));
-                }
-              });
+          element.addEventListener("click", function (e) {
+            if (!e.ctrlKey && !e.metaKey) {
+              e.preventDefault();
+              stackNote(element.href, this.dataset.level);
+              fetchNote(element.href, this.dataset.level, (animate = true));
             }
           });
-      });
+        }
+      }
+      return myFetch();
     }
   });
 }
@@ -175,7 +180,7 @@ window.addEventListener("popstate", function (event) {
   window.location = window.location; // this reloads the page.
 });
 
-(function () {
+window.onload = function () {
   initializePreviews(document.querySelector(".page"));
 
   uri = URI(window.location);
@@ -188,4 +193,4 @@ window.addEventListener("popstate", function (event) {
       fetchNote(stacks[i - 1], i);
     }
   }
-})();
+};
