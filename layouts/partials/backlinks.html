@@ -3,7 +3,7 @@
   <h4>Links to this note</h4>
   <div class="backlinks">
     {{ range .Site.AllPages }}
-    {{ if findRE $re .RawContent }}
+    {{ if and (findRE $re .RawContent) (not (eq .File.BaseFileName $.File.BaseFileName)) }}
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ end }}
     {{ end }}
