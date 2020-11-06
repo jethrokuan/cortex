@@ -1,0 +1,11 @@
+<div class="bl-section">
+  {{ $re := $.File.BaseFileName }}
+  <h4>Links to this note</h4>
+  <div class="backlinks">
+    {{ range .Site.AllPages }}
+    {{ if findRE $re .RawContent }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+    {{ end }}
+  </div>
+</div>

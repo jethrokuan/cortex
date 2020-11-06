@@ -219,6 +219,10 @@ a {
   color: rgba(10, 132, 255, 1);
 }
 
+a.active {
+  background-color: rgba(10, 132, 255, 0.15);
+}
+
 a:hover {
   opacity: 0.5;
 }
@@ -259,15 +263,6 @@ iframe {
 
 .tippy-box > .tippy-arrow:before {
   transform: scale(2);
-}
-
-footer {
-  background: #fff;
-  align-items: center;
-  text-align: center;
-  color: #ccc;
-  border-top: 1px #ccc solid;
-  font-size: 10px;
 }
 
 .bl-section {
