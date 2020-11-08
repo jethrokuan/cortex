@@ -227,18 +227,20 @@ a:hover {
   opacity: 0.5;
 }
 
-code {
-  white-space: pre;
-  background: #eeeeee;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  display: inline-block;
-  max-width: 100%;
-  overflow: auto;
+blockquote {
+  margin-left: 1rem;
+  font-style: italic;
+  font-family: Georgia, bitstream charter, serif;
+  border-left: 3px solid;
+  border-left-color: currentcolor;
+  border-color: var(--text-color);
+  padding-left: 1em;
 }
 
 pre {
-  padding: 1px 10px;
+  overflow: auto;
+  padding: 1em;
+  margin: 1em auto;
 }
 
 img {
