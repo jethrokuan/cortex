@@ -294,8 +294,36 @@ iframe {
   color: rgba(10, 132, 255, 0.75);
 }
 
+dl {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 1em 0;
+}
+dl > * {
+  padding-top: 0.5em;
+}
+
 dt {
-  text-decoration: underline;
+  width: 30%;
+  font-weight: bold;
+  text-align: right;
+}
+dd {
+  width: 60%;
+  padding-left: 1em;
+  margin-left: 0px;
+}
+dd + dd {
+  width: 100%;
+  padding-left: calc(30% + 1em);
+}
+dt + dt {
+  padding-right: 60%;
+}
+dt + dt + dd {
+  margin-top: -1.625em; /* own height including padding */
+  padding-left: calc(30% + 1em);
 }
 
 @media only screen and (max-width: 600px) {
