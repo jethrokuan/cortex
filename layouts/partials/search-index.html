@@ -1,0 +1,22 @@
+<script>
+window.store = {
+    // You can specify your blog section only:
+    {{ range .Site.Pages }}
+    // For all pages in your site, use "range .Site.Pages"
+    // You can use any unique identifier here
+    "{{ .Permalink }}": {
+        // You can customize your searchable fields using any .Page parameters
+        "title": "{{ .Title  }}",
+        "tags": [{{ range .Params.Tags }}"{{ . }}",{{ end }}],
+        "content": {{ .Content | plainify }}, // Strip out HTML tags
+        "url": "{{ .Permalink }}"
+    },
+    {{ end }}
+}
+</script>
+
+{{ $lunrjs := resources.Get "js/lunr.min.js" }}
+<script src="{{$lunrjs.Permalink}}" type="text/javascript"></script>
+
+{{ $searchjs := resources.Get "js/search.js" }}
+<script src="{{$searchjs.Permalink}}" type="text/javascript"></script>
