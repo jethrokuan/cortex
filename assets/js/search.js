@@ -1,14 +1,13 @@
 function displayResults(results, store) {
-  console.log("here");
   const searchResults = document.getElementById("results");
   if (results.length) {
-    let resultList = "";
+    let resultList = "<h3 class='search-count'>" + results.length + " results found</h3>";
     // Iterate and build result list elements
     for (const n in results) {
       const item = store[results[n].ref];
       resultList +=
-        '<li><p><a href="' + item.url + '">' + item.title + "</a></p>";
-      resultList += "<p>" + item.content.substring(0, 150) + "...</p></li>";
+        '<li><a href="' + item.url + '">' + item.title + "</a>";
+      resultList += "<span class='search-extract'>" + item.content.substring(0, 100) + "...</span></li>";
     }
     searchResults.innerHTML = resultList;
   } else {
