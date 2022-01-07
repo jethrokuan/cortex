@@ -1,6 +1,6 @@
 #+TITLE: Cortex Theme
 
-Theme for my braindump. Currently largely copied from [[https://github.com/azlen/azlen.me/][azlen.me]].
+Theme for my braindump. Currently largely copied from [[https://github.com/azlen/roam-themes][notes.azlen.me]].
 
 ** Search
 
